@@ -50,7 +50,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
 		setError('');
 		setSucces('');
 		startTransition(() => {
-			login(values, callbackUrl)
+			login(values, callbackUrl as string)
 				.then((data) => {
 					if (data?.error) {
 						setError(data.error);
@@ -67,22 +67,24 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
 	}
 	return (
 		<CardWrapper
-			headerLabel='Welcome back'
+			headerLabel="Welcome back"
 			backButtonLabel="Don't have an account?"
-			backButtonHref='/auth/register'
-			showSocial>
+			backButtonHref="/auth/register"
+			showSocial
+		>
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(handleSubmit)}
-					className='space-y-6'>
-					<div className='space-y-4'>
+					className="space-y-6"
+				>
+					<div className="space-y-4">
 						<If condition={showTwoFactor}>
 							<Then>
 								<FormField
 									control={form.control}
-									name='code'
+									name="code"
 									render={({ field }) => (
-										<FormItem className=''>
+										<FormItem className="">
 											<FormLabel>
 												Two Factor Code
 											</FormLabel>
@@ -94,7 +96,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
 												/> */}
 												<InputOTP
 													maxLength={6}
-													{...field}>
+													{...field}
+												>
 													<InputOTPGroup>
 														<InputOTPSlot
 															index={0}
@@ -119,10 +122,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
 												</InputOTP>
 											</FormControl>
 											<Button
-												size='sm'
-												variant='link'
+												size="sm"
+												variant="link"
 												asChild
-												className='px-0 font-normal'>
+												className="px-0 font-normal"
+											>
 												<Link href={'/auth/reset'}>
 													Forgot password?
 												</Link>
@@ -135,7 +139,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
 							<Else>
 								<FormField
 									control={form.control}
-									name='email'
+									name="email"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Email</FormLabel>
@@ -143,8 +147,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
 												<Input
 													{...field}
 													disabled={isPending}
-													placeholder='jondoe@example.com'
-													type='email'
+													placeholder="jondoe@example.com"
+													type="email"
 												/>
 											</FormControl>
 											<FormMessage />
@@ -153,7 +157,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
 								/>
 								<FormField
 									control={form.control}
-									name='password'
+									name="password"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Password</FormLabel>
@@ -161,15 +165,16 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
 												<Input
 													{...field}
 													disabled={isPending}
-													placeholder='******'
-													type='password'
+													placeholder="******"
+													type="password"
 												/>
 											</FormControl>
 											<Button
-												size='sm'
-												variant='link'
+												size="sm"
+												variant="link"
 												asChild
-												className='px-0 font-normal'>
+												className="px-0 font-normal"
+											>
 												<Link href={'/auth/reset'}>
 													Forgot password?
 												</Link>
@@ -185,8 +190,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
 					<FormSuccess message={success} />
 					<Button
 						disabled={isPending}
-						type='submit'
-						className='w-full'>
+						type="submit"
+						className="w-full"
+					>
 						{showTwoFactor ? 'Confirm' : 'Login'}
 					</Button>
 				</form>
