@@ -7,8 +7,8 @@ import {
 	authRoutes,
 	publicRoutes,
 } from './routes';
-export default auth((reg ) => {
-	const { nextUrl} = reg;
+export default auth((reg): any => {
+	const { nextUrl } = reg;
 	const isLoggedIn = !!reg.auth;
 
 	const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
@@ -26,13 +26,13 @@ export default auth((reg ) => {
 	}
 	if (!isLoggedIn && !isPublicRoute) {
 		let callbackUrl = nextUrl.pathname;
-		if(nextUrl.search){
-			callbackUrl+= nextUrl.search
+		if (nextUrl.search) {
+			callbackUrl += nextUrl.search
 		}
 		const encodeCallbackUrl = encodeURIComponent(callbackUrl)
-			return Response.redirect(new URL(`/auth/login?callbackUrl=${encodeCallbackUrl}`,nextUrl))
+		return Response.redirect(new URL(`/auth/login?callbackUrl=${encodeCallbackUrl}`, nextUrl))
 	}
-	return null;
+	return null
 });
 export const config = {
 	matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trcp)(.*)'],

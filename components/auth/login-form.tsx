@@ -30,7 +30,7 @@ import {
 interface LoginFormProps {}
 export const LoginForm: React.FC<LoginFormProps> = ({}) => {
 	const searchParams = useSearchParams();
-	const callbackUrl = searchParams.get("callbackUrl")
+	const callbackUrl = searchParams.get('callbackUrl');
 	const urlError =
 		searchParams.get('error') === 'OAuthAccountNotLinked'
 			? 'Email already in use with different provider!'
@@ -50,7 +50,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
 		setError('');
 		setSucces('');
 		startTransition(() => {
-			login(values,callbackUrl)
+			login(values, callbackUrl)
 				.then((data) => {
 					if (data?.error) {
 						setError(data.error);

@@ -24,7 +24,7 @@ export default {
 					if (!user || !user.password) return null;
 					const passwordsMatch = await bcrypt.compare(
 						password,
-						user.password
+						user.password,
 					);
 					if (passwordsMatch && user.emailVerified) return user;
 				}
